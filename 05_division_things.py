@@ -4,6 +4,7 @@ from fractions import Fraction
 # Set to store generated equations
 generated_equations = set()
 
+
 # Generates the random maths question
 def generate_random_math_equation():
     while True:

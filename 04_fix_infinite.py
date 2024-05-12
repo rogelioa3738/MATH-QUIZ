@@ -30,5 +30,6 @@ def fixed_infinite():
         else:
             print("Please choose either 'infinite' or 'fixed'.")
 
+
 if __name__ == "__main__":
     fixed_infinite()

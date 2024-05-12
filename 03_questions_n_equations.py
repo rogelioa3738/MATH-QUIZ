@@ -41,6 +41,7 @@ def generate_multiple_equations(num_equations):
         answer_checker(user_answer, result)
         print()
 
+
 def answer_checker(user, math):
     # To check if user answer is same as the math answer
     if user == math:
