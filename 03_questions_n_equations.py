@@ -1,5 +1,6 @@
 import random
 
+
 # Generates the random maths question
 def generate_random_math_equation():
     num1 = random.randint(1, 10)
@@ -27,9 +28,9 @@ def generate_random_math_equation():
 # Generate and print multiple random equations
 def generate_multiple_equations(num_equations):
     print("\n☢️☢️☢️Answer the following set of equations!☢️☢️☢️\n")
-    for _ in range(0, num_equations + 1):
+    for i in range(0, num_equations + 1):
         equation, result = generate_random_math_equation()
-        print("EQUATION:", equation)
+        print("EQUATION", i + 1, ":", equation) # Add equation number
         while True:
             user_input = input("Your Answer: ")
             try:

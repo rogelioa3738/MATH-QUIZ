@@ -37,9 +37,9 @@ def generate_random_math_equation():
 # Generate and print multiple random equations
 def generate_multiple_equations(num_equations):
     print("\n☢️☢️☢️ Answer the following set of equations! ☢️☢️☢️\n")
-    for _ in range(num_equations):
+    for i in range(num_equations):
         equation, result = generate_random_math_equation()
-        print("EQUATION:", equation)
+        print("EQUATION", i + 1, ":", equation)
         while True:
             user_input = input("Your Answer: ")
             try:
@@ -63,4 +63,3 @@ def answer_checker(user, math, equation):
 
 num_equations = 50
 generate_multiple_equations(num_equations)
-
