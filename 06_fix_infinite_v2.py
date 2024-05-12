@@ -96,8 +96,8 @@ def answer_checker(user, math, equation):
     elif user == equation:
         print("Come on, don't repeat the equation!")
     else:
-        print("🫤🫤🫤 Sorry, you didn't get it. 🫤🫤🫤 The correct answer is:", math)
-
+        print("🫤🫤🫤 Sorry, you didn't get it. 🫤🫤🫤")
+        print("The correct answer is:", math)
 
 if __name__ == "__main__":
     fixed_infinite()

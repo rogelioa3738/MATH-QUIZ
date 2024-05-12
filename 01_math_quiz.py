@@ -10,7 +10,8 @@ def yes_no(question):
         elif response == "no" or response == "n":
             return "no"
         else:
-            print("You did not choose a valid response")
+            print("‼️You did not choose a valid response‼️")
+            print()
 
 
 def generate_random_integer(start, end):
@@ -21,7 +22,7 @@ def int_check(question):
 
     while True:
 
-        error = "Please enter and integer that is 1 or more."
+        error = "‼️Please enter and integer that is 1 or more.‼️"
 
         to_check = input(question)
 

@@ -47,7 +47,8 @@ def generate_multiple_equations(num_equations):
                 user_answer = Fraction(user_input)
                 break
             except ValueError:
-                print("Please enter a valid answer.")
+                print("‼️Please enter a valid answer.‼️")
+                print()
         answer_checker(user_answer, result, equation)
         print()
 
@@ -59,7 +60,8 @@ def answer_checker(user, math, equation):
     elif user == equation:
         print("Come on, don't repeat the equation!")
     else:
-        print("🫤🫤🫤 Sorry, you didn't get it. 🫤🫤🫤 The correct answer is:", math)
+        print("🫤🫤🫤 Sorry, you didn't get it. 🫤🫤🫤")
+        print("The correct answer is:", math)
 
 
 num_equations = 50
