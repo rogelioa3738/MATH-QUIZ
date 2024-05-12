@@ -49,12 +49,13 @@ def instructions():
 
 In this Mathematics quiz round, you'll need to answer some random generated equations in order to pass.
 
-In order to pass, you'll need to answer the following equations correctly.
+In order to pass, you'll need to answer the following equations correctly and don't forget to put your answers 
+in two decimal places.
 
 You will only be given a one chance to answer correctly so think about it first before you type in your answer.
 
 There will be two type of ways to do the quiz, one is where there's a fixed number of random equations or an infinite
-number of equations ()
+number of equations.
 
             ''')
 print()
