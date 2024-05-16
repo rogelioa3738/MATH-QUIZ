@@ -4,61 +4,85 @@ from fractions import Fraction
 # Set to store generated equations
 generated_equations = set()
 
-
 def infinite(max_equation=1000):
-    round_num = 0
-    while round_num < max_equation:
-        round_num += 1
-        equation, result = generate_random_math_equation()
-        print("EQUATION", round_num, ":", equation)
-        user_input = input("Your Answer: ")
-        try:
-            user_answer = Fraction(user_input)
-        except ValueError:
-            print("Please enter a valid answer.")
-            continue
-        answer_checker(user_answer, result, equation)
-        print()
+    equations = 0
 
+    while True:
+        while equations < max_equation:
+            equations += 1
+            equation, result = generate_random_math_equation()
+            while True:
+                print("EQUATION", equations, ":", equation)
+                user_input = input("Your Answer: ")
+                if user_input.lower() == 'xxx':
+                    print("Thank you for playing!")
+                    return 0
+                try:
+                    user_answer = Fraction(user_input)
+                except ValueError:
+                    print("Please enter a valid answer.")
+                    print()
+                    continue
+                answer_checker(user_answer, result, equation)
+                print()
+                if user_answer == result:
+                    break
+                else:
+                    break  # Exit the inner loop if the answer is wrong
+    return 0
 
 def fixed(num_equations):
-    for round_num in range(1, num_equations + 1):
+    for equations in range(1, num_equations + 1):
         equation, result = generate_random_math_equation()
-        print()
-        print("EQUATION", round_num, ":", equation)
-        user_input = input("Your Answer: ")
-        try:
-            user_answer = Fraction(user_input)
-        except ValueError:
-            print("Please enter a valid answer.")
-            continue
-        answer_checker(user_answer, result, equation)
-        print()
-
+        while True:
+            print()
+            print("EQUATION", equations, ":", equation)
+            user_input = input("Your Answer: ")
+            if user_input.lower() == 'xxx':
+                print("Thank you for playing!")
+                return 0
+            try:
+                user_answer = Fraction(user_input)
+            except ValueError:
+                print("Please enter a valid answer.")
+                print()
+                continue
+            if user_answer == result:
+                answer_checker(user_answer, result, equation)
+                print()
+                break
+            else:
+                answer_checker(user_answer, result, equation)
+                print()
+                break  # Move to the next equation if the answer is wrong
+    return 0
 
 def fixed_infinite():
-
     print()
-    print("Please type in below what type of quiz do want to do.")
+    print("Please type in below what type of quiz you want to do.")
     print()
 
     while True:
-        game_type = input("Choose game type ( infinite / fixed ): ")
+        game_type = input("Choose game type (infinite / fixed): ").lower()
         print()
 
-        if game_type.lower() == 'infinite':
-            print("🤯🤯🤯 Wow! You picked the infinite amount of equations! 🤯🤯🤯")
+        if game_type == 'infinite':
+            print("🤯🤯🤯 Wow! You picked an infinite number of equations! 🤯🤯🤯")
+            print()
             infinite()
             break
-        elif game_type.lower() == 'fixed':
-            print("👏👏👏 Since you pick a fixed amount of equation for this quiz"
-                  "you will then answer a 100 random set of equations! 👏👏👏")
+        elif game_type == 'fixed':
+            print("👏👏👏 Since you picked a fixed amount of equations for this quiz, "
+                  "you will then answer 100 random equations! 👏👏👏")
             num_equations = 100
             fixed(num_equations)
             break
+        elif game_type == 'exit':
+            print("Thank you for playing!")
+            return 0
         else:
-            print("Please choose either 'infinite' or 'fixed'.")
-
+            print("Please choose either 'infinite', 'fixed', or 'exit'.")
+            print()
 
 def generate_random_math_equation():
     while True:
@@ -84,10 +108,9 @@ def generate_random_math_equation():
             result = Fraction(num1, num2)
         else:
             # If division by zero, generate a new equation
-            return generate_random_math_equation()
+            return generate_random_math_equation(), None
 
     return equation, result
-
 
 def answer_checker(user, math, equation):
     # To check if user answer is same as the math answer
@@ -100,4 +123,5 @@ def answer_checker(user, math, equation):
         print("The correct answer is:", math)
 
 if __name__ == "__main__":
-    fixed_infinite()
+    exit_code = fixed_infinite()
+    exit(exit_code)
