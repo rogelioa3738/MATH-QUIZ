@@ -4,6 +4,7 @@ from fractions import Fraction
 # Set to store generated equations
 generated_equations = set()
 
+
 def infinite(max_equation=1000):
     equations = 0
 
@@ -15,12 +16,17 @@ def infinite(max_equation=1000):
                 print("EQUATION", equations, ":", equation)
                 user_input = input("Your Answer: ")
                 if user_input.lower() == 'xxx':
-                    print("Thank you for playing!")
-                    return 0
+                    confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
+                    if confirmation == 'yes':
+                        print("Thank you for playing!")
+                        return 0
+                    else:
+                        print("Resuming the game...")
+                        continue
                 try:
                     user_answer = Fraction(user_input)
                 except ValueError:
-                    print("Please enter a valid answer.")
+                    print("‼️Please enter a valid answer.‼️")
                     print()
                     continue
                 answer_checker(user_answer, result, equation)
@@ -31,6 +37,7 @@ def infinite(max_equation=1000):
                     break  # Exit the inner loop if the answer is wrong
     return 0
 
+
 def fixed(num_equations):
     for equations in range(1, num_equations + 1):
         equation, result = generate_random_math_equation()
@@ -39,12 +46,12 @@ def fixed(num_equations):
             print("EQUATION", equations, ":", equation)
             user_input = input("Your Answer: ")
             if user_input.lower() == 'xxx':
-                print("Thank you for playing!")
-                return 0
+                print("The exit in this quiz is not available. You'll need to answer a set of 100 random equations.")
+                continue
             try:
                 user_answer = Fraction(user_input)
             except ValueError:
-                print("Please enter a valid answer.")
+                print("‼️Please enter a valid answer.‼️")
                 print()
                 continue
             if user_answer == result:
@@ -57,6 +64,7 @@ def fixed(num_equations):
                 break  # Move to the next equation if the answer is wrong
     return 0
 
+
 def fixed_infinite():
     print()
     print("Please type in below what type of quiz you want to do.")
@@ -64,7 +72,6 @@ def fixed_infinite():
 
     while True:
         game_type = input("Choose game type (infinite / fixed): ").lower()
-        print()
 
         if game_type == 'infinite':
             print("🤯🤯🤯 Wow! You picked an infinite number of equations! 🤯🤯🤯")
@@ -77,12 +84,10 @@ def fixed_infinite():
             num_equations = 100
             fixed(num_equations)
             break
-        elif game_type == 'exit':
-            print("Thank you for playing!")
-            return 0
         else:
-            print("Please choose either 'infinite', 'fixed', or 'exit'.")
+            print("Please choose either 'infinite' or 'fixed'.")
             print()
+
 
 def generate_random_math_equation():
     while True:
@@ -112,6 +117,7 @@ def generate_random_math_equation():
 
     return equation, result
 
+
 def answer_checker(user, math, equation):
     # To check if user answer is same as the math answer
     if user == math:
@@ -121,6 +127,7 @@ def answer_checker(user, math, equation):
     else:
         print("🫤🫤🫤 Sorry, you didn't get it. 🫤🫤🫤")
         print("The correct answer is:", math)
+
 
 if __name__ == "__main__":
     exit_code = fixed_infinite()
