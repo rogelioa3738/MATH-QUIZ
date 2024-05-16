@@ -6,10 +6,6 @@ generated_equations = set()
 
 
 def generate_random_math_equation(difficulty):
-    num1 = random.randint(1, 10)
-    num2 = random.randint(1, 10)
-    operator = random.choice(['+', '-', '*', '/'])
-
     if difficulty == 'easy':
         num1 = random.randint(1, 10)
         num2 = random.randint(1, 10)
@@ -21,8 +17,9 @@ def generate_random_math_equation(difficulty):
         num2 = random.randint(100, 1000)
     elif difficulty == 'expert':
         num1 = random.randint(1000, 10000)
-        num2 = random.randint(1000,  10000)
+        num2 = random.randint(1000, 10000)
 
+    operator = random.choice(['+', '-', '*', '/'])
     equation = f"{num1} {operator} {num2}"
 
     if operator == '+':
@@ -32,19 +29,29 @@ def generate_random_math_equation(difficulty):
     elif operator == '*':
         result = num1 * num2
     elif operator == '/':
-        # Ensure that division is valid (non-zero divisor)
-        if num2 != 0:
-            result = Fraction(num1, num2)
-        else:
-            # If division by zero, generate a new equation
-            return generate_random_math_equation(difficulty)
+        while num2 == 0:  # Ensure divisor is not zero
+            num2 = random.randint(1, 10)
+        result = round(num1 / num2, 2)
 
     return equation, result
 
 
 def answer_checker(user, math, equation):
-    # To check if user answer is same as the math answer
-    if user == math:
+    # Convert user answer to float or fraction for comparison
+    try:
+        user_answer = float(user)
+    except ValueError:
+        try:
+            user_answer = float(Fraction(user))
+        except ValueError:
+            print("‼️Please enter a valid answer.‼️")
+            return
+
+    # Round the float answer to two decimal places
+    if isinstance(math, float):
+        user_answer = round(user_answer, 2)
+
+    if user_answer == math:
         print("🙀🙀🙀 Oh my Oh my! You got it! So proud of ya! 🙀🙀🙀")
     elif user == equation:
         print("Come on, don't repeat the equation!")
@@ -58,17 +65,36 @@ def quiz(difficulty, num_equations=100):
     print(f"You've selected a {difficulty} quiz!")
     print()
 
-    for round_num in range(1, num_equations + 1):
+    for equation_number in range(1, num_equations + 1):
         equation, result = generate_random_math_equation(difficulty)
-        print("EQUATION", round_num, ":", equation)
-        user_input = input("Your Answer: ")
-        try:
-            user_answer = Fraction(user_input)
-        except ValueError:
-            print("Please enter a valid answer.")
-            continue
-        answer_checker(user_answer, result, equation)
+        print("EQUATION", equation_number, ":", equation)
+
+        while True:
+            user_input = input("Your Answer: ")
+
+            if user_input.lower() == 'xxx':
+                confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
+                if confirmation == 'yes':
+                    print("👏👏Thank you for answering👏👏")
+                    return True  # User chose to exit
+                else:
+                    print("Resuming the quiz...")
+                    break  # Resume the game
+
+            try:
+                user_answer = Fraction(user_input)
+                break  # Break out of the loop if input is valid
+            except ValueError:
+                print("‼️Please enter a valid answer.‼️")
+                print()
+
+        if user_input.lower() == 'xxx':
+            break  # Exit the loop if user chose to exit
+
+        answer_checker(user_input, result, equation)
         print()
+
+    return False  # User didn't choose to exit
 
 
 def main_levels():
@@ -82,19 +108,26 @@ def main_levels():
     print("4. Expert")
     print()
 
-    choice = input("What would you like to choose "
-                   "(Type in the words easy / medium / hard / expert)? ")
+    while True:
+        choice = input("What would you like to choose "
+                       "(Type in the words easy / medium / hard / expert)? ")
 
-    if choice.lower() == 'easy':
-        quiz('easy')
-    elif choice.lower() == 'medium':
-        quiz('medium')
-    elif choice.lower() == 'hard':
-        quiz('hard')
-    elif choice.lower() == 'expert':
-        quiz('expert')
-    else:
-        print("Please enter one of the difficulties")
+        # If user chooses to exit the code it will not ask again
+        if choice.lower() == 'easy':
+            if quiz('easy'):
+                break
+        elif choice.lower() == 'medium':
+            if quiz('medium'):
+                break
+        elif choice.lower() == 'hard':
+            if quiz('hard'):
+                break
+        elif choice.lower() == 'expert':
+            if quiz('expert'):
+                break
+        else:
+            print("‼️Please enter one of the difficulties‼️")
+            print()
 
 
 if __name__ == "__main__":

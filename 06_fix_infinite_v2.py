@@ -5,7 +5,7 @@ from fractions import Fraction
 generated_equations = set()
 
 
-def infinite(max_equation=1000):
+def infinite(max_equation=10000):
     equations = 0
 
     while True:
@@ -18,10 +18,10 @@ def infinite(max_equation=1000):
                 if user_input.lower() == 'xxx':
                     confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
                     if confirmation == 'yes':
-                        print("Thank you for playing!")
+                        print("Thank you for answering!")
                         return 0
                     else:
-                        print("Resuming the game...")
+                        print("Resuming the quiz...")
                         continue
                 try:
                     user_answer = Fraction(user_input)

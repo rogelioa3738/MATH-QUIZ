@@ -28,6 +28,7 @@ def fixed_infinite():
             break
         else:
             print("Please choose either 'infinite' or 'fixed'.")
+            print()
 
 
 if __name__ == "__main__":
