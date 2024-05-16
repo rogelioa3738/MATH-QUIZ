@@ -5,6 +5,7 @@ from fractions import Fraction
 generated_equations = set()
 
 
+# If user picked an infinite quiz
 def infinite(max_equation=10000):
     equations = 0
 
@@ -15,13 +16,19 @@ def infinite(max_equation=10000):
             while True:
                 print("EQUATION", equations, ":", equation)
                 user_input = input("Your Answer: ")
-                if user_input.lower() == 'xxx':
-                    confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
-                    if confirmation == 'yes':
-                        print("Thank you for answering!")
-                        return 0
+                if user_input.lower() == 'xxx':  # Exit code for user if they want to quit
+                    if equations >= 75:
+                        confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
+                        if confirmation == 'yes':
+                            print("Thank you for answering!")
+                            return 0
+                        else:
+                            print("Resuming the quiz...")
+                            continue
                     else:
-                        print("Resuming the quiz...")
+                        print(f"You need to answer at least 75 equations before exiting. You have answered {equations} "
+                              f"equations so far.")
+                        print()
                         continue
                 try:
                     user_answer = Fraction(user_input)
@@ -31,13 +38,11 @@ def infinite(max_equation=10000):
                     continue
                 answer_checker(user_answer, result, equation)
                 print()
-                if user_answer == result:
-                    break
-                else:
-                    break  # Exit the inner loop if the answer is wrong
+                break  # Exit the inner loop after one attempt per equation
     return 0
 
 
+# If user picked a fixed quiz
 def fixed(num_equations):
     for equations in range(1, num_equations + 1):
         equation, result = generate_random_math_equation()
@@ -45,7 +50,7 @@ def fixed(num_equations):
             print()
             print("EQUATION", equations, ":", equation)
             user_input = input("Your Answer: ")
-            if user_input.lower() == 'xxx':
+            if user_input.lower() == 'xxx':  # Exit code will not work in fixed quiz if user try to type it in
                 print("The exit in this quiz is not available. You'll need to answer a set of 100 random equations.")
                 continue
             try:
@@ -65,6 +70,7 @@ def fixed(num_equations):
     return 0
 
 
+# To ask user what kind of quiz they want
 def fixed_infinite():
     print()
     print("Please type in below what type of quiz you want to do.")
@@ -118,6 +124,8 @@ def generate_random_math_equation():
     return equation, result
 
 
+# To add a comment if user picked a right or wrong answer
+# Add the correct answer if user did not get the right answer
 def answer_checker(user, math, equation):
     # To check if user answer is same as the math answer
     if user == math:
