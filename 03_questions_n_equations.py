@@ -38,6 +38,7 @@ def generate_multiple_equations(num_equations):
                 break
             except ValueError:
                 print("Please enter a valid number.")
+                print()
         answer_checker(user_answer, result)
         print()
 

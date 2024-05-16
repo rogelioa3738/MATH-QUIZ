@@ -1,30 +1,29 @@
 def infinite(max_equation=1000):
-    round_num = 0
-    while round_num < max_equation:
-        round_num += 1
-        print("EQUATION", round_num)
+    equation = 0
+    while equation < max_equation:
+        equation += 1
+        print("EQUATION", equation)
 
 
-def fixed(equation):
-    for round_num in range(1, equation + 1):
-        print("Fixed round", round_num)
+def fixed(num_equations):
+    for equation in range(1, num_equations + 1):
+        print("Fixed equation", equation)
 
 
 def fixed_infinite():
-
     print()
-    print("Please type in below what type of quiz do want to do.")
+    print("Please type in below what type of quiz you want to do.")
     print()
 
     while True:
-        game_type = input("Choose game type ( infinite / fixed ): ")
+        quiz_type = input("Choose quiz type ( infinite / fixed ): ")
 
-        if game_type.lower() == 'infinite':
+        if quiz_type.lower() == 'infinite':
             infinite()
             break
-        elif game_type.lower() == 'fixed':
+        elif quiz_type.lower() == 'fixed':
             num_equations = int(input("Since you chose to answer a fixed amount of equations, "
-                                      "you will then answer 50 sets of random equations. "))
+                                      "you will then answer 100 sets of random equations. "))
             fixed(num_equations)
             break
         else:

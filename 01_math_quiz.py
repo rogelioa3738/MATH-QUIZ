@@ -58,6 +58,11 @@ You will only be given a one chance to answer correctly so think about it first 
 There will be two type of ways to do the quiz, one is where there's a fixed number of random equations or an infinite
 number of equations.
 
+Remember that when pick a fixed amount of equations in this quiz, you'll need to finish it.
+If you choose an infinite amount of equation, you'll need to enter the exit code 'XXX' to end it.
+
+At the end of the, your score will be shown.
+
             ''')
 print()
 print("⚠️⚠️ MATH QUIZ ALERT ⚠️⚠️")

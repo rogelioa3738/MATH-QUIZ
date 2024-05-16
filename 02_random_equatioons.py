@@ -1,7 +1,8 @@
 import random
 
-
 # Generates the random maths question
+
+
 def generate_random_math_equation():
     num1 = random.randint(1, 10)
     num2 = random.randint(1, 10)
@@ -25,23 +26,25 @@ def generate_random_math_equation():
     return equation, result
 
 
-equation, result = generate_random_math_equation()
-print("Solve the equation:", equation)
-print("Result:", result)
-
-
-# Generate and print multiple random equations
-def generate_multiple_equations(num_equations,user, math):
+# Function to generate and print multiple random equations
+def generate_multiple_equations(num_equations):
     print("\nAnswer the following set of equations!")
     print()
     for _ in range(num_equations):
         equation, result = generate_random_math_equation()
         print(f"EQUATION:", equation)
-        print(f"RESULT:", result)
+        user_input = input("Your Answer: ")
+        try:
+            user_answer = float(user_input)
+            if user_answer == result:
+                print("Correct!")
+            else:
+                print("Incorrect. The correct answer is:", result)
+        except ValueError:
+            print("Please enter a valid number.")
         print()
 
 
+# Number of equations to generate
 num_equations = 10
 generate_multiple_equations(num_equations)
-
-# todo def to handle answer check (including a try/except to cover non numbers)
