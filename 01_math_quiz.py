@@ -50,6 +50,8 @@ If you choose an infinite amount of equation, you'll need to enter the exit code
 Note that you'll need to answer a minimum of 75 equations in order for the exit code 'xxx' to work.
 
 At the end of the quiz, your score will be shown.
+If your answer is below 75% you'll fail.
+
             ''')
 
 
