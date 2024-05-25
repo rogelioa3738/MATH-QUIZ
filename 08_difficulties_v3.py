@@ -75,7 +75,7 @@ def infinite(difficulty, num_equations=100000):
             user_input = input("Your Answer: ")
 
             if user_input.lower() == 'xxx':
-                if answered_equations >= 15:
+                if answered_equations >= 75:
                     confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
                     if confirmation == 'yes':
                         print("👏👏Thank you for answering👏👏")
@@ -83,7 +83,7 @@ def infinite(difficulty, num_equations=100000):
                     else:
                         print("Resuming the quiz...")
                         print()
-                        break  # Resume the quiz
+                        continue  # Resume the quiz
                 else:  # This is for the exit code 'xxx' if user did not meet the required equations
                     print(f"You can't exit the quiz until you've answered a total of 75 equations,"
                           f" as for now you've only answered {answered_equations} total equations")
@@ -144,7 +144,7 @@ def fixed(difficulty):
     return False  # User didn't choose to exit
 
 
-# Main program will start here
+# Main quiz program will start here
 print()
 print("In this quiz, you will be given four difficulties to choose from.")
 print()

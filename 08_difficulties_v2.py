@@ -60,7 +60,26 @@ def answer_checker(user, math, equation):
         print("The correct answer is:", math)
 
 
-def quiz(difficulty, num_equations=100):
+def infinite(difficulty):
+    print()
+    print(f"You've selected a {difficulty} quiz!")
+    print()
+
+    while True:
+        equation, result = generate_random_math_equation(difficulty)
+        print("EQUATION:", equation)
+
+        user_input = input("Your Answer: ")
+
+        if user_input.lower() == 'xxx':
+            print("👏👏Thank you for answering👏👏")
+            break
+
+        answer_checker(user_input, result, equation)
+        print()
+
+
+def fixed(num_equations, difficulty):
     print()
     print(f"You've selected a {difficulty} quiz!")
     print()
@@ -73,13 +92,8 @@ def quiz(difficulty, num_equations=100):
             user_input = input("Your Answer: ")
 
             if user_input.lower() == 'xxx':
-                confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
-                if confirmation == 'yes':
-                    print("👏👏Thank you for answering👏👏")
-                    return True  # User chose to exit
-                else:
-                    print("Resuming the quiz...")
-                    break  # Resume the game
+                print("👏👏Thank you for answering👏👏")
+                return  # User chose to exit
 
             try:
                 user_answer = Fraction(user_input)
@@ -88,47 +102,44 @@ def quiz(difficulty, num_equations=100):
                 print("‼️Please enter a valid answer.‼️")
                 print()
 
-        if user_input.lower() == 'xxx':
-            break  # Exit the loop if user chose to exit
-
         answer_checker(user_input, result, equation)
         print()
 
-    return False  # User didn't choose to exit
 
+# Main quiz program will start here
+print()
+print("In this quiz, you will be given four difficulties to choose from.")
+print()
+print("Choose one of the following difficulties:")
+print("1. Easy")
+print("2. Medium")
+print("3. Hard")
+print("4. Expert")
+print()
 
-def main_levels():
-    print()
-    print("In this quiz, you will be given four difficulties to choose from.")
-    print()
-    print("Choose one of the following difficulties:")
-    print("1. Easy")
-    print("2. Medium")
-    print("3. Hard")
-    print("4. Expert")
-    print()
+while True:
+    choice = input("What would you like to choose "
+                   "(Type in the words easy / medium / hard / expert)? ")
 
-    while True:
-        choice = input("What would you like to choose "
-                       "(Type in the words easy / medium / hard / expert)? ")
+    if choice.lower() in ['easy', 'medium', 'hard', 'expert']:
+        break
+    else:
+        print("‼️Please enter one of the difficulties‼️")
+        print()
 
-        # If user chooses to exit the code it will not ask again
-        if choice.lower() == 'easy':
-            if quiz('easy'):
-                break
-        elif choice.lower() == 'medium':
-            if quiz('medium'):
-                break
-        elif choice.lower() == 'hard':
-            if quiz('hard'):
-                break
-        elif choice.lower() == 'expert':
-            if quiz('expert'):
-                break
-        else:
-            print("‼️Please enter one of the difficulties‼️")
-            print()
+while True:
+    quiz_type = input("Choose quiz type (infinite / fixed): ")
 
-
-if __name__ == "__main__":
-    main_levels()
+    if quiz_type.lower() == 'infinite':
+        print("🤯🤯🤯 Wow! You picked the infinite amount of equations! 🤯🤯🤯")
+        infinite(choice)
+        break
+    elif quiz_type.lower() == 'fixed':
+        print("👏👏👏 Since you picked a fixed amount of equations for this quiz,"
+              " you will then answer a 100 random set of equations! 👏👏👏")
+        num_equations = 100
+        fixed(num_equations, choice)
+        break
+    else:
+        print("‼️Please choose either 'infinite' or 'fixed'.‼️")
+        print()
