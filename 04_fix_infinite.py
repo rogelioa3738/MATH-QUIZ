@@ -31,5 +31,4 @@ def fixed_infinite():
             print()
 
 
-if __name__ == "__main__":
-    fixed_infinite()
+fixed_infinite()

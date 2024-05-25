@@ -39,7 +39,7 @@ number of equations.
 
 Remember that when pick a fixed amount of equations in this quiz, you'll need to finish it.
 If you choose an infinite amount of equation, you'll need to enter the exit code 'xxx' to end it.
-Note that you'll need to answer a minimum of 99 equations in order for the exit code 'xxx' to work.
+Note that you'll need to answer a minimum of 75 equations in order for the exit code 'xxx' to work.
 
 At the end of the quiz, your score will be shown.
 
@@ -50,7 +50,7 @@ print()
 print("⚠️⚠️ MATH QUIZ ALERT ⚠️⚠️")
 print()
 
-want_instructions = yes_no("Do you want to see the instructions ( yes / no )? ")
+want_instructions = yes_no("Do you want to see the instructions (yes / no)? ")
 
 # checks users yes (y) or no (n)
 if want_instructions == "yes":

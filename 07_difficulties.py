@@ -39,16 +39,19 @@ def main_levels():
 
         if choice == 'easy':
             easy_quiz()
+            break
         elif choice == 'medium':
             medium_quiz()
+            break
         elif choice == 'hard':
             hard_quiz()
+            break
         elif choice == 'expert':
             expert_quiz()
+            break
         else:
             print("‼️Please enter one of the difficulties‼️")
             print()
 
 
-if __name__ == "__main__":
-    main_levels()
+main_levels()

@@ -18,8 +18,8 @@ def infinite(max_equation=10000):
                 user_input = input("Your Answer: ")
                 if user_input.lower() == 'xxx':  # Exit code for user if they want to quit
                     if equations >= 75:
-                        confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
-                        if confirmation == 'yes':
+                        exit_choice = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
+                        if exit_choice.lower() == 'yes':
                             print("Thank you for answering!")
                             return 0
                         else:
@@ -77,14 +77,15 @@ def fixed_infinite():
     print()
 
     while True:
-        game_type = input("Choose game type (infinite / fixed): ").lower()
+        quiz_type = input("Choose game type (infinite / fixed): ").lower()
 
-        if game_type == 'infinite':
+        if quiz_type.lower() == 'infinite':
             print("🤯🤯🤯 Wow! You picked an infinite number of equations! 🤯🤯🤯")
             print()
             infinite()
             break
-        elif game_type == 'fixed':
+        elif quiz_type.lower()\
+                == 'fixed':
             print("👏👏👏 Since you picked a fixed amount of equations for this quiz, "
                   "you will then answer 100 random equations! 👏👏👏")
             num_equations = 100
@@ -137,6 +138,5 @@ def answer_checker(user, math, equation):
         print("The correct answer is:", math)
 
 
-if __name__ == "__main__":
-    exit_code = fixed_infinite()
-    exit(exit_code)
+exit_code = fixed_infinite()
+exit(exit_code)
