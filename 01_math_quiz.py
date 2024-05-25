@@ -120,7 +120,7 @@ def answer_checker(user, math, equation):
     elif user == equation:
         print("Come on, don't repeat the equation!")
     else:
-        print("🫤🫤🫤 Sorry, you didn't get it. 🫤🫤🫤")
+        print("🫤🫤🫤 Sorry brother/sister, you didn't get it. 🫤🫤🫤")
         print("The correct answer is:", math)
 
 
@@ -177,7 +177,7 @@ def infinite(difficulty, num_equations=100000):
             continue  # Repeat the same equation if user chose to exit
         else:
             answer_checker(user_input, result, equation)
-            total_equations_attempted += 1  # Increment the count of answered equations
+            total_equations_attempted += 1  # The count of answered equations
             print()
 
     return False  # User didn't choose to exit
@@ -214,7 +214,7 @@ def fixed(difficulty):
                 continue  # Repeat the same equation
 
             answer_checker(user_input, result, equation)
-            total_equations_attempted += 1  # Increment the count of answered equations
+            total_equations_attempted += 1  # The count of answered equations
             print()
             break  # Move to the next equation after valid input
 
@@ -271,7 +271,7 @@ while True:
             print("😯😯You've picked a hard quiz😯😯")
             print()
         elif choice.lower() == 'expert':
-            print("💀💀You've picked an expert💀💀")
+            print("💀💀You've picked an expert quiz💀💀")
             print()
         break
     else:
