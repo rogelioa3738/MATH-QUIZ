@@ -4,7 +4,7 @@ from fractions import Fraction
 # Set to store generated equations
 generated_equations = set()
 
-# Statistics part
+# To record every equation and right answers of the user
 total_equations_attempted = 0
 total_correct_answers = 0
 
@@ -82,12 +82,20 @@ def infinite(difficulty, num_equations=100000):
             user_input = input("Your Answer: ")
 
             if user_input.lower() == 'xxx':
-                if total_equations_attempted >= 25:
+                if total_equations_attempted >= 75:
                     confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
                     if confirmation == 'yes':
                         print("👏👏Thank you for answering👏👏")
                         print()
-                        print("Your final score:", round((total_correct_answers / total_equations_attempted) * 100, 2), "%")
+                        print()  # This is to immediately show user their score
+                        print("Your final score is", round((total_correct_answers / total_equations_attempted) * 100, 2), "%")
+                        final_score = round((total_correct_answers / total_equations_attempted) * 100, 2)
+
+                        if final_score >= 75:
+                            print("🥳🥳🥳Congratulations! You passed the quiz🥳🥳🥳")
+                        else:
+                            print("😭😭😭Sorry, but you have failed the quiz. Better luck next time😭😭😭")
+                        print()
                         return True  # User chose to exit
                     else:
                         print("Resuming the quiz...")
@@ -151,8 +159,30 @@ def fixed(difficulty):
             print()
             break  # Move to the next equation after valid input
 
-    print("Your final score:", round((total_correct_answers / total_equations_attempted) * 100, 2), "%")
+    print()  # This is to immediately show user their score
+    print("Your final score is", round((total_correct_answers / total_equations_attempted) * 100, 2), "%")
+    final_score = round((total_correct_answers / total_equations_attempted) * 100, 2)
+
+    if final_score >= 75:
+        print("🥳🥳🥳Congratulations! You passed the quiz🥳🥳🥳")
+    else:
+        print("😭😭😭Sorry, but you have failed the quiz. Better luck next time😭😭😭")
+    print()
     return False  # User didn't choose to exit
+
+
+# Statistics part of the code
+def quiz_results():
+    global total_correct_answers
+    global total_equations_attempted
+
+    print()
+    print("✖️➕➖➗ Quiz results ➗➖➕✖️")
+    print()
+    print("Total equations attempted:", total_equations_attempted)
+    print("Total correct answers:", total_correct_answers)
+    print("Total wrong answers:", total_equations_attempted - total_correct_answers)
+    print()
 
 
 # Main quiz program will start here
@@ -167,7 +197,7 @@ print("4. Expert")
 print()
 
 while True:
-    choice = input("What would you like to choose (Type in the words easy / medium / hard / expert)? ")
+    choice = input("What would you like to choose ( easy / medium / hard / expert )? ")
 
     if choice.lower() in ['easy', 'medium', 'hard', 'expert']:
         if choice.lower() == 'easy':
@@ -203,4 +233,17 @@ while True:
         break
     else:
         print("‼️Please choose either 'infinite' or 'fixed'.‼️")
+        print()
+
+# Ask if the user wants to see quiz results
+while True:
+    show_stats = input("Do you want to see the quiz results ( yes / no )? ").lower()
+    if show_stats == "yes":
+        quiz_results()
+        break
+    elif show_stats == "no":
+        print("Thank you")
+        break
+    else:
+        print("‼️Please enter 'yes' or 'no'.‼️")
         print()

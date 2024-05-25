@@ -26,7 +26,7 @@ def generate_random_math_equation():
     return equation, result
 
 
-# Function to generate and print multiple random equations
+# to generate and print multiple random equations
 def generate_multiple_equations(num_equations):
     print("\nAnswer the following set of equations!")
     print()
