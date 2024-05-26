@@ -59,7 +59,7 @@ print()
 print("⚠️⚠️ MATH QUIZ ALERT ⚠️⚠️")
 print()
 
-want_instructions = yes_no("Do you want to see the instructions (yes / no)? ")
+want_instructions = yes_no("Do you want to see the instructions ( yes / no )? ")
 
 # checks users yes (y) or no (n)
 if want_instructions == "yes":
@@ -114,6 +114,7 @@ def answer_checker(user, math, equation):
     if isinstance(math, float):
         user_answer = round(user_answer, 2)
 
+    # to put comments to user's answer and to show the answer if they got it wrong
     if user_answer == math:
         print("🙀🙀🙀 Oh my Oh my! You got it! So proud of ya! 🙀🙀🙀")
         total_correct_answers += 1
@@ -139,12 +140,12 @@ def infinite(difficulty, num_equations=100000):
             user_input = input("Your Answer: ")
 
             if user_input.lower() == 'xxx':
-                if total_equations_attempted >= 75:
+                if total_equations_attempted >= 75:  # The equations needed to be answered before exit code work
                     confirmation = input("Are you sure you want to exit the quiz now? (yes / no): ").lower()
                     if confirmation == 'yes':
                         print("👏👏Thank you for answering👏👏")
-                        print()
-                        print()  # This is to immediately show user their score
+                        print()  # Part of the quiz stats
+                        print()  # This is to immediately show user their score after they finished answering
                         print("Your final score is", round((total_correct_answers / total_equations_attempted) * 100, 2), "%")
                         final_score = round((total_correct_answers / total_equations_attempted) * 100, 2)
 
@@ -218,7 +219,7 @@ def fixed(difficulty):
             print()
             break  # Move to the next equation after valid input
 
-    print()  # This is to immediately show user their score
+    print()  # This is to immediately show user their score after they finished answering (part of the quiz stats)
     print("Your final score is", round((total_correct_answers / total_equations_attempted) * 100, 2), "%")
     final_score = round((total_correct_answers / total_equations_attempted) * 100, 2)
 
@@ -238,7 +239,7 @@ def quiz_results():
     global total_equations_attempted
 
     print()
-    print("✖️➕➖➗ Quiz results ➗➖➕✖️")
+    print("✖️➕➖➗ Quiz Results ➗➖➕✖️")
     print()
     print("Total equations attempted:", total_equations_attempted)
     print("Total correct answers:", total_correct_answers)
@@ -279,7 +280,7 @@ while True:
         print()
 
 while True:
-    quiz_type = input("Choose quiz type (infinite / fixed): ")
+    quiz_type = input("Choose quiz type ( infinite / fixed ): ")
 
     if quiz_type.lower() == 'infinite':
         print("🤯🤯🤯 Wow! You picked the infinite amount of equations! 🤯🤯🤯")
@@ -299,12 +300,17 @@ while True:
 # Ask if the user wants to see quiz results
 while True:
     show_stats = input("Do you want to see the quiz results ( yes / no )? ").lower()
-    if show_stats == "yes":
+    if show_stats.lower() == "yes":
         quiz_results()
         break
-    elif show_stats == "no":
+    elif show_stats.lower() == "y":
+        quiz_results()
+        break
+    elif show_stats.lower() == "no":
         print("Thank you")
         break
+    elif show_stats.lower() == "n":
+        print("Thank you")
     else:
         print("‼️Please enter 'yes' or 'no'.‼️")
         print()
