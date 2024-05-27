@@ -1,8 +1,6 @@
 import random
 from fractions import Fraction
 
-# Set to store generated equations
-generated_equations = set()
 
 # To record every equation and right answers of the user
 total_equations_attempted = 0
@@ -53,17 +51,6 @@ At the end of the quiz, your score will be shown.
 If your answer is below 75% you'll fail.
 
             ''')
-
-
-print()
-print("⚠️⚠️ MATH QUIZ ALERT ⚠️⚠️")
-print()
-
-want_instructions = yes_no("Do you want to see the instructions ( yes / no )? ")
-
-# checks users yes (y) or no (n)
-if want_instructions == "yes":
-    instructions()
 
 
 def equation_generator(difficulty):
@@ -245,6 +232,17 @@ def quiz_results():
     print("Total correct answers:", total_correct_answers)
     print("Total wrong answers:", total_equations_attempted - total_correct_answers)
     print()
+
+
+print()
+print("⚠️⚠️ MATH QUIZ ALERT ⚠️⚠️")
+print()
+
+want_instructions = yes_no("Do you want to see the instructions ( yes / no )? ")
+
+# checks users yes (y) or no (n)
+if want_instructions == "yes":
+    instructions()
 
 
 # Main quiz program will start here

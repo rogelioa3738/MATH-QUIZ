@@ -1,9 +1,6 @@
 import random
 from fractions import Fraction
 
-# Set to store generated equations
-generated_equations = set()
-
 
 def generate_random_math_equation(difficulty):
     if difficulty == 'easy':

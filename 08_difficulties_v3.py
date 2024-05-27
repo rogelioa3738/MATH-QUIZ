@@ -1,8 +1,6 @@
 import random
 from fractions import Fraction
 
-# Set to store generated equations
-generated_equations = set()
 
 # Statistics part
 total_equations_attempted = 0
