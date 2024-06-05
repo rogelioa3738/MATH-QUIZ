@@ -114,7 +114,7 @@ def answer_checker(user, math, equation):
 
 
 # If user picked an infinite quiz, this will run
-def infinite(difficulty, num_equations=100000):
+def infinite(difficulty, num_equations=100000):  # The limit for infinite is 100000
     global total_equations_attempted  # The total number of equations the user will/need to answer
     print()
     print(f"You've selected a quiz with an infinite amount of equations and with a difficulty of {difficulty}!")
