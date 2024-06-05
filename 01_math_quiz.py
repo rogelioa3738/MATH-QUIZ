@@ -3,11 +3,11 @@ from fractions import Fraction
 
 
 # To record every equation and right answers of the user
-total_equations_attempted = 0
-total_correct_answers = 0
+total_equations_attempted = 0  # Total equations user managed to answer
+total_correct_answers = 0  # Total correct answer by the user
 
 
-def yes_no(question):
+def yes_no(question):  # This is for the answers to the instructions
     while True:
         response = input(question).lower()
 
@@ -28,7 +28,7 @@ def generate_random_integer(start, end):
     return random.randint(start, end)
 
 
-def instructions():
+def instructions():  # Instructions
     print('''
 
 🤖🤖🤖🤖 INSTRUCTIONS 🤖🤖🤖🤖
@@ -53,7 +53,8 @@ If your answer is below 75% you'll fail.
             ''')
 
 
-def equation_generator(difficulty):
+# This is the one of the main code that generate all the equations
+def equation_generator(difficulty):  # The range of numbers depending on user's choice of difficulty
     if difficulty == 'easy':
         num1 = random.randint(1, 10)
         num2 = random.randint(1, 10)
@@ -68,7 +69,7 @@ def equation_generator(difficulty):
         num2 = random.randint(1000, 10000)
 
     operator = random.choice(['+', '-', '*', '/'])
-    equation = f"{num1} {operator} {num2}"
+    equation = f"{num1} {operator} {num2}"  # This is how we want the equation to look like (for example 1 + 1)
 
     if operator == '+':
         result = num1 + num2
@@ -79,13 +80,13 @@ def equation_generator(difficulty):
     elif operator == '/':
         while num2 == 0:  # Ensure divisor is not zero
             num2 = random.randint(1, 10)
-        result = round(num1 / num2, 2)
+        result = round(num1 / num2, 2)  # To round the answer to two decimal places when a division equation show
 
     return equation, result
 
 
 def answer_checker(user, math, equation):
-    global total_correct_answers
+    global total_correct_answers  # It is to collect user's correct answer for the stats at the end of the quiz
 
     # Convert user answer to float or fraction for comparison
     try:
@@ -109,18 +110,18 @@ def answer_checker(user, math, equation):
         print("Come on, don't repeat the equation!")
     else:
         print("🫤🫤🫤 Sorry brother/sister, you didn't get it. 🫤🫤🫤")
-        print("The correct answer is:", math)
+        print("The correct answer is:", math)  # Will show the correct answer if user did not get it right
 
 
 # If user picked an infinite quiz, this will run
 def infinite(difficulty, num_equations=100000):
-    global total_equations_attempted
+    global total_equations_attempted  # The total number of equations the user will/need to answer
     print()
     print(f"You've selected a quiz with an infinite amount of equations and with a difficulty of {difficulty}!")
     print()
 
-    for equation_number in range(1, num_equations + 1):
-        equation, result = equation_generator(difficulty)
+    for equation_number in range(1, num_equations + 1):  # This is to show the equation number
+        equation, result = equation_generator(difficulty)  # The part where the equations generate
         print("EQUATION", equation_number, ":", equation)
 
         while True:
@@ -136,7 +137,7 @@ def infinite(difficulty, num_equations=100000):
                         print("Your final score is", round((total_correct_answers / total_equations_attempted) * 100, 2), "%")
                         final_score = round((total_correct_answers / total_equations_attempted) * 100, 2)
 
-                        if final_score >= 75:
+                        if final_score >= 75:  # The required mark in order to pass
                             print("🥳🥳🥳Congratulations! You passed the quiz🥳🥳🥳")
                             print()
                         else:
@@ -144,7 +145,7 @@ def infinite(difficulty, num_equations=100000):
                             print()
                         print()
                         return True  # User chose to exit
-                    else:
+                    else:  # If user do not enter a valid choice, quiz will automatically resume
                         print("Resuming the quiz...")
                         print()
                         continue  # Resume the quiz
@@ -173,26 +174,25 @@ def infinite(difficulty, num_equations=100000):
 
 # If user picked a fixed quiz, this will run
 def fixed(difficulty):
-    global total_equations_attempted
-    global total_correct_answers
-    num_equations = 100  # Amount of equations we want
-
+    global total_equations_attempted  # The total number of equations the user will/need to answer
+    global total_correct_answers  # The total correct answers by the user for the stats part after finished quiz
+    num_equations = 100  # Amount of equations for the fixed quiz
     print()
     print(f"You've selected a quiz with {num_equations} equations and with a difficulty of {difficulty}!")
     print()
 
-    for equation_number in range(1, num_equations + 1):
-        equation, result = equation_generator(difficulty)
+    for equation_number in range(1, num_equations + 1):   # This is to show the equation number
+        equation, result = equation_generator(difficulty)  # The part where the equations generate
         print("EQUATION", equation_number, ":", equation)
 
         while True:
             user_input = input("Your Answer: ")
 
-            if user_input.lower() == 'xxx':
+            if user_input.lower() == 'xxx':  # If user enter the exit code in fixed quiz, it won't work
                 if total_equations_attempted < num_equations:
                     print("Sorry but you can't exit this quiz until you answer a total of 100 equations")
                     print()
-                    continue
+                    continue  # To resume the quiz
 
             try:
                 user_answer = Fraction(user_input)
@@ -222,8 +222,8 @@ def fixed(difficulty):
 
 # Statistics part of the code
 def quiz_results():
-    global total_correct_answers
-    global total_equations_attempted
+    global total_correct_answers  # Total correct answers of the user's quiz
+    global total_equations_attempted  # The total amount of equations answered by the user
 
     print()
     print("✖️➕➖➗ Quiz Results ➗➖➕✖️")
@@ -234,7 +234,7 @@ def quiz_results():
     print()
 
 
-print()
+print()  # The title and warning that there's a quiz
 print("⚠️⚠️ MATH QUIZ ALERT ⚠️⚠️")
 print()
 
@@ -256,7 +256,7 @@ print("3. Hard")
 print("4. Expert")
 print()
 
-while True:
+while True:  # User options for the quiz difficulty
     choice = input("What would you like to choose ( easy / medium / hard / expert )? ")
 
     if choice.lower() in ['easy', 'medium', 'hard', 'expert']:
@@ -277,7 +277,7 @@ while True:
         print("‼️Please enter one of the difficulties.‼️")
         print()
 
-while True:
+while True:  # User options to what kind of quiz they want to answer
     quiz_type = input("Choose quiz type ( infinite / fixed ): ")
 
     if quiz_type.lower() == 'infinite':
