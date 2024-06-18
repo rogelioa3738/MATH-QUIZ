@@ -55,16 +55,16 @@ If your answer is below 75% you'll fail.
 
 # This is the one of the main code that generate all the equations
 def equation_generator(difficulty):  # The range of numbers depending on user's choice of difficulty
-    if difficulty == 'easy':
+    if difficulty == '1':
         num1 = random.randint(1, 10)
         num2 = random.randint(1, 10)
-    elif difficulty == 'medium':
+    elif difficulty == '2':
         num1 = random.randint(10, 100)
         num2 = random.randint(10, 100)
-    elif difficulty == 'hard':
+    elif difficulty == '3':
         num1 = random.randint(100, 1000)
         num2 = random.randint(100, 1000)
-    elif difficulty == 'expert':
+    elif difficulty == '4':
         num1 = random.randint(1000, 10000)
         num2 = random.randint(1000, 10000)
 
@@ -125,7 +125,7 @@ def infinite(difficulty, num_equations=100000):  # The limit for infinite is 100
         print("EQUATION", equation_number, ":", equation)
 
         while True:
-            user_input = input("Your Answer: ")
+            user_input = input("Your answer: ")
 
             if user_input.lower() == 'xxx':
                 if total_equations_attempted >= 75:  # The equations needed to be answered before exit code work
@@ -186,7 +186,7 @@ def fixed(difficulty):
         print("EQUATION", equation_number, ":", equation)
 
         while True:
-            user_input = input("Your Answer: ")
+            user_input = input("Your answer: ")
 
             if user_input.lower() == 'xxx':  # If user enter the exit code in fixed quiz, it won't work
                 if total_equations_attempted < num_equations:
@@ -248,33 +248,28 @@ if want_instructions == "yes":
 # Main quiz program will start here
 print()
 print("In this quiz, you will be given four difficulties to choose from.")
-print()
-print("Choose one of the following difficulties:")
-print("1. Easy")
-print("2. Medium")
-print("3. Hard")
-print("4. Expert")
+print("Type in 1 if you want easy, 2 for medium, 3 for hard, and 4 for expert")
 print()
 
 while True:  # User options for the quiz difficulty
-    choice = input("What would you like to choose ( easy / medium / hard / expert )? ")
+    choice = input("What would you like to choose [ easy (1) / medium (2) / hard (3) / expert (4) ]? ")
 
-    if choice.lower() in ['easy', 'medium', 'hard', 'expert']:
-        if choice.lower() == 'easy':
+    if choice.lower() in ['1', '2', '3', '4']:
+        if choice.lower() == '1':
             print("👍👍You've picked an easy quiz👍👍")
             print()
-        elif choice.lower() == 'medium':
+        elif choice.lower() == '2':
             print("👏👏You've picked a medium quiz👏👏")
             print()
-        elif choice.lower() == 'hard':
+        elif choice.lower() == '3':
             print("😯😯You've picked a hard quiz😯😯")
             print()
-        elif choice.lower() == 'expert':
+        elif choice.lower() == '4':
             print("💀💀You've picked an expert quiz💀💀")
             print()
         break
     else:
-        print("‼️Please enter one of the difficulties.‼️")
+        print("‼️Please pick a difficulty between 1 and 4️")
         print()
 
 while True:  # User options to what kind of quiz they want to answer
